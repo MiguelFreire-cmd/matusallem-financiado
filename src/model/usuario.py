@@ -6,7 +6,7 @@ class Usuario:
 
 
     @staticmethod
-    def cadastrar(login:str, senha:str) -> bool: 
+    def cadastrar(id_login:str, senha:str) -> bool: 
 
 
 
@@ -18,9 +18,9 @@ class Usuario:
                 return False
             
             cursor.execute ("""
-                            insert into tb_usuarios(login, senha)
+                            insert into tb_usuarios(id_login, senha)
                             values (%s, %s)
-    """, [login,senha])
+    """, [id_login,senha])
 
             conexao.commit()
             conexao.close()
@@ -32,7 +32,7 @@ class Usuario:
 
 
     @staticmethod
-    def verificar(login:str, senha:str) -> dict:
+    def verificar(id_login:str, senha:str) -> dict:
         conexao, cursor = Conexao(). conectar()
 
         if conexao == None:
@@ -40,10 +40,10 @@ class Usuario:
 
         try:
             cursor.execute("""
-                            select login, senha from matusallem_financiado
-                            where login = %s
+                            select id_login, senha from tb_usuarios
+                            where id_login = %s
                             and senha = %s
-""",[login, senha])
+""",[id_login, senha])
             resultado = cursor.fetchone()
             conexao.close()
 
@@ -51,4 +51,4 @@ class Usuario:
         
         except Exception as erro:
             print(f"ERRO: {erro}")
-            return {}
+            
