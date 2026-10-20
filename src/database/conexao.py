@@ -6,7 +6,7 @@ class Conexao:
     @staticmethod
     def conectar():
         try:
-            #criar a conexão com o banco de dados MySQL
+            #criar a conexão com o banco de dados MySQLite
             conexao = mysql.connector.connect(host="localhost",
                                             port = 3306,
                                             user = "root",
