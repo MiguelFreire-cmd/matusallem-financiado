@@ -1,3 +1,3 @@
-from src.model.categoria import Categoria
-id_categoria= Categoria().excluir(3)
+from src.model.usuario import Categoria
+id_categoria= Categoria().adicionar("Alimentação","banana")
 print(id_categoria)

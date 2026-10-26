@@ -47,3 +47,24 @@ class Categoria:
         except Exception as e:
             print(f"Erro ao Inserir: {e}!")
             return False
+    @staticmethod
+    def recuperar(id_login:str) -> list:
+        conexao, cursor = Conexao().conectar()
+
+        if not conexao:
+            print("erro ao tentar conectar")
+            return None
+        
+        try:
+            cursor.execute("""
+                            select id_categoria, tipo, id_login from tb_categorias
+                            where id_login = %s
+
+                            
+""", [id_login])
+            resultado = cursor.fetchall()
+            conexao.close()
+            return resultado
+
+        except Exception as e:
+            print(f"Erro ao Inserir: {e}!")
