@@ -106,7 +106,7 @@ class Despesa:
                                     data = %s,
                                     hora = %s
                                 WHERE 
-                                    id_despesa = %s,
+                                    id_despesa = %s
                                     and login = %s;
                                
                             """,
