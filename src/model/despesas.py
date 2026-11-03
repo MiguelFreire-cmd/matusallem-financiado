@@ -5,7 +5,7 @@ class Despesa:
         pass
 
     @staticmethod
-    def adicionar(login:str, id_categoria:int, data:str, hora:int, descricao:str, valor:int) -> int:
+    def adicionar(id_login:str, id_categoria:int, data:str, hora:int, descricao:str, valor:int) -> int:
             conexao, cursor = Conexao().conectar()
             
             if conexao == None:
@@ -14,10 +14,10 @@ class Despesa:
     
             try:
                 cursor.execute("""
-                            INSERT INTO tb_despesas(id_categoria, login, data, hora, descricao, valor)
+                            INSERT INTO tb_despesas(id_categoria, id_login, data, hora, descricao, valor)
                             VALUES (%s, %s,%s, %s, %s, %s);
                             """,
-                            [id_categoria,login, data, hora, descricao, valor])
+                            [id_categoria,id_login, data, hora, descricao, valor])
                 id_categoria=cursor.lastrowid
                 conexao.commit()
                 conexao.close()
@@ -48,7 +48,7 @@ class Despesa:
             return False
 
     @staticmethod
-    def pegar(login:str) -> list:
+    def pegar(id_login:str) -> list:
         conexao, cursor = Conexao().conectar()
         if not conexao:
             print("Erro ao conectar")
@@ -56,10 +56,10 @@ class Despesa:
 
         try:
             cursor.execute("""
-                            SELECT id_despesa, id_categoria, login FROM tb_despesas
-                            WHERE login = %s;
+                            SELECT * FROM tb_despesas
+                            WHERE id_login = %s;
                             """,
-                            [login])
+                            [id_login])
             pegador = cursor.fetchall()
             conexao.close()
             return pegador
@@ -69,7 +69,7 @@ class Despesa:
         
 
     @staticmethod
-    def pegar_catgoria(login:str,id_categoria:int) -> list:
+    def pegar_categoria(id_login:str,id_categoria:int) -> list:
         conexao, cursor = Conexao().conectar()
         if not conexao:
             print("Erro ao conectar")
@@ -77,11 +77,11 @@ class Despesa:
 
         try:
             cursor.execute("""
-                            SELECT id_despesa, id_categoria, login FROM tb_despesas
-                            WHERE login = %s;
+                            SELECT id_despesa, id_categoria, id_login FROM tb_despesas
+                            WHERE id_login = %s;
                             and id_categoria = %s;
                             """,
-                            [login,id_categoria])
+                            [id_login,id_categoria])
             pegador = cursor.fetchall()
             conexao.close()
             return pegador
@@ -90,7 +90,7 @@ class Despesa:
             return None
         
     @staticmethod
-    def alterar(id_despesa:int, login:str, id_categoria:int, data:str, hora:int, descricao:str, valor:int) -> bool:
+    def alterar(id_despesa:int, id_login:str, id_categoria:int, data:str, hora:int, descricao:str, valor:int) -> bool:
             conexao, cursor = Conexao().conectar()
             
             if conexao == False:
@@ -107,10 +107,10 @@ class Despesa:
                                     hora = %s
                                 WHERE 
                                     id_despesa = %s
-                                    and login = %s;
+                                    and id_login = %s;
                                
                             """,
-                            [id_categoria,descricao,valor,data,hora,id_despesa,login])
+                            [id_categoria,descricao,valor,data,hora,id_despesa,id_login])
                 id_despesa=cursor.lastrowid
                 conexao.commit()
                 conexao.close()
