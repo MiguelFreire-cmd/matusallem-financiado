@@ -16,5 +16,7 @@ class Login(ft.View):
         title = ft.Text(value="Abre ai vai",
                         color="#505ab4",
                         size=200)
+        self.route = "/login"
 
         self.controls=[title]
+    

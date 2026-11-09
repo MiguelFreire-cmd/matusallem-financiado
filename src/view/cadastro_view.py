@@ -1,7 +1,9 @@
 import flet as ft 
 from src.model.usuario import Usuario
+from src.view.login import Login
 
 class Cadastro(ft.View):
+
     def __init__(self,pg:ft.Page):
         super().__init__()
 
@@ -12,7 +14,7 @@ class Cadastro(ft.View):
         self.horizontal_alignment = "center"
         self.vertical_alignment = "center"
 
-        self.route = "./"
+        self.route = "./cadastro"
 
         title = ft.Text(value="Criar Nova Conta",
                         color="#505ab4")
@@ -45,7 +47,8 @@ class Cadastro(ft.View):
                               width=300,
                               height=50,
                               color= "#505ab4",
-                              margin=5
+                              margin=5,
+                              on_click=self.ir
         )
         coluna_acesso = ft.Column(controls=[self.login,self.senha])
 
@@ -55,6 +58,8 @@ class Cadastro(ft.View):
         self.controls = [title,subtitle,coluna_acesso, coluna_botoes]
 
     def cadastrar(self):
+
+
         usuario = self.login.value
         senha = self.senha.value
 
@@ -70,6 +75,10 @@ class Cadastro(ft.View):
         else:
             self.page.show_dialog(ft.SnackBar(content="Deu merda...",
             bgcolor="#505ab4"))
+
+    async def ir(self):
+        await self.page.push_route("/login")
+
                     
         
 
