@@ -12,6 +12,7 @@ class Cadastro(ft.View):
         self.horizontal_alignment = "center"
         self.vertical_alignment = "center"
 
+        self.route = "./"
 
         title = ft.Text(value="Criar Nova Conta",
                         color="#505ab4")
@@ -30,7 +31,8 @@ class Cadastro(ft.View):
                              color="#505ab4",
                              margin=5,
                              password= True,
-                             can_reveal_password=True)
+                             can_reveal_password=True
+                             )
         
         cadastrar = ft.Button(content="Cadastrar",
                               width=300,
@@ -56,8 +58,18 @@ class Cadastro(ft.View):
         usuario = self.login.value
         senha = self.senha.value
 
-        Usuario().cadastrar(usuario,senha)
+        if usuario == "" or senha == "":
+            self.page.show_dialog(ft.SnackBar(content="Para de ser burro e escreve",
+                                            bgcolor="#a0aff1"))
+            return
 
-            
+        resultado = Usuario().cadastrar(usuario,senha)
+        if resultado == True:
+            self.page.show_dialog(ft.SnackBar(content="Deu certo meu patrão",
+                        bgcolor="#94d1fa"))
+        else:
+            self.page.show_dialog(ft.SnackBar(content="Deu merda...",
+            bgcolor="#505ab4"))
+                    
         
 
