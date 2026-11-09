@@ -14,7 +14,7 @@ class Cadastro(ft.View):
         self.horizontal_alignment = "center"
         self.vertical_alignment = "center"
 
-        self.route = "./cadastro"
+        self.route = "/cadastro"
 
         title = ft.Text(value="Criar Nova Conta",
                         color="#505ab4")
