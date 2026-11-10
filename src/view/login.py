@@ -13,8 +13,12 @@ class Login(ft.View):
         self.horizontal_alignment = "center"
         self.vertical_alignment = "center"
 
-        title = ft.Text(value="Login",
-                        color="#505ab4",)
+        title = ft.Text(value="Matusalem Financiado",
+                        color="#505ab4",
+                        size=20)
+        subtitle = ft.Text(value="Login AQUI!!",
+                        color="#505ab4",
+                        size=20)
         
         self.route = "/login"
         
@@ -50,7 +54,7 @@ class Login(ft.View):
         coluna_botoes = ft.Column(controls=[cadastrar,entrar])
         
 
-        self.controls = [title,coluna_acesso, coluna_botoes]
+        self.controls = [title,subtitle,coluna_acesso, coluna_botoes]
 
     async def verificar(self):
     
