@@ -71,7 +71,9 @@ class Login(ft.View):
             if resultado :
                 self.page.show_dialog(ft.SnackBar(content="Deu certo meu patrão",
                             bgcolor="#94d1fa"))
+                self.page.session.store.set("usuario_logado",resultado.get("id_login"))
                 await self.ir_para_principal()
+
             else:
                 self.page.show_dialog(ft.SnackBar(content="Deu merda...",
                 bgcolor="#505ab4"))

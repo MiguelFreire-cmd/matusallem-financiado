@@ -29,35 +29,47 @@ def main(pg:ft.Page):
                                         ft.NavigationBarDestination(icon=ft.Icons.EXIT_TO_APP, label="Sair"),
                                         ],
                                         on_change=navegacao)
-    tela_categoria = CategoriaView(pg)
-    tela_despesas_por_categoria = Categoria_visualização(pg)
-    tela_despesas = DespesaView(pg)
-    tela_visualizar_despesas = Despesas_visualização(pg)
-    tela_cadastro = Cadastro(pg)
-    tela_login = Login(pg)
-    tela_principal = Principal(pg)
-    tela_principal.navigation_bar = tela_navegacao
-    tela_categoria.navigation_bar = tela_navegacao
-    tela_despesas_por_categoria.navigation_bar = tela_navegacao
-    tela_despesas.navigation_bar = tela_navegacao
-    tela_visualizar_despesas.navigation_bar = tela_navegacao
+
+
+
+
+
+
+
+
+
+
+
+
 
     def roteament(e=None):
         pg.views.clear()
 
         if pg.route == "/cadastro":
+            tela_cadastro = Cadastro(pg)
             pg.views.append(tela_cadastro)
         elif pg.route == "/login":
+            tela_login = Login(pg)
             pg.views.append(tela_login)
         elif pg.route == "/principal":
+            tela_principal = Principal(pg)
+            tela_principal.navigation_bar = tela_navegacao
             pg.views.append(tela_principal)
         elif pg.route == "/categoriaview":
+            tela_categoria = CategoriaView(pg)
+            tela_categoria.navigation_bar = tela_navegacao
             pg.views.append(tela_categoria)
         elif pg.route == "/categoria":
+            tela_despesas_por_categoria = Categoria_visualização(pg)
+            tela_despesas_por_categoria.navigation_bar = tela_navegacao
             pg.views.append(tela_despesas_por_categoria)
         elif pg.route == "/despesas":
+            tela_despesas = DespesaView(pg)
+            tela_despesas.navigation_bar = tela_navegacao
             pg.views.append(tela_despesas)
         elif pg.route == "/despesasview":
+            tela_visualizar_despesas = Despesas_visualização(pg)
+            tela_visualizar_despesas.navigation_bar = tela_navegacao
             pg.views.append(tela_visualizar_despesas)
 
         pg.update()
@@ -65,5 +77,5 @@ def main(pg:ft.Page):
     pg.on_route_change = roteament
     roteament()
 
-    pg.views.append(tela_login)
+    pg.navigate("/login")
 ft.run(main)
