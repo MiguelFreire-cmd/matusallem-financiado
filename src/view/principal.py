@@ -18,7 +18,7 @@ class Principal(ft.View):
         title = ft.Text(value="Matusalem Financiado",
                         color="#505ab4",
                         size=30,)
-        subtitle = ft.Text(value=f"{dados_usuario}Manda tudo para eu roubar suas informações",
+        subtitle = ft.Text(value=f"{dados_usuario} Manda tudo para eu roubar suas informações",
                         color="#505ab4",
                         size=12,)
 
