@@ -4,9 +4,18 @@ from src.view.principal import Principal
 from src.view.login import Login
 
 def main(pg:ft.Page):
+    tela_navegacao = ft.NavigationBar(destinations=[
+                                        ft.NavigationBarDestination(icon=ft.Icons.EXPOSURE_PLUS_1, label="Criar Categoria"),
+                                        ft.NavigationBarDestination(icon=ft.Icons.PAGEVIEW_OUTLINED, label="Despesas por Categoria"),
+                                        ft.NavigationBarDestination(icon=ft.Icons.EXPOSURE_PLUS_1, label=" Criar Despesas"),
+                                        ft.NavigationBarDestination(icon=ft.Icons.PAGEVIEW_OUTLINED, label="Visualizar Despesas"),
+                                        ]
+
+    )
     tela_cadastro = Cadastro(pg)
     tela_login = Login(pg)
     tela_principal = Principal(pg)
+    tela_principal.navigation_bar = tela_navegacao
 
     def roteament(e=None):
         pg.views.clear()
