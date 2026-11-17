@@ -9,7 +9,7 @@ class Despesas_visualização(ft.View):
         self.width = 800
         self.height = 600
         self.title = "Formulário"
-        self.bgcolor = "#ffffff"
+        self.bgcolor = "#d5dce5"
         self.vertical_alignment = "center"
         self.horizontal_alignment = "center"
 
