@@ -14,7 +14,7 @@ class Categoria_visualização(ft.View):
         self.horizontal_alignment = "center"
 
         title = ft.Text(value="Visualizar Despesas por categoria",
-                        color="#505ab4",
+                        color="#3765fc",
                         size=30,)
         
         self.route = "/categoria"

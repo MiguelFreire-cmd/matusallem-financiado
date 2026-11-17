@@ -14,7 +14,7 @@ class Despesas_visualização(ft.View):
         self.horizontal_alignment = "center"
 
         title = ft.Text(value="Visualizar Despesas",
-                        color="#505ab4",
+                        color="#3765fc",
                         size=30,)
         
         self.route = "/despesasview"

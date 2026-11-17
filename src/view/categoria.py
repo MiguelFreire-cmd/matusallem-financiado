@@ -29,10 +29,15 @@ class CategoriaView(ft.View):
                                  color="#505ab4",
                                  on_click= self.cadastrar_categoria)
         
+        
 
-        coluna_lista = ft.Column(controls=self.lista_categoria)
+        coluna_lista = ft.Column(controls=self.lista_categoria,
+                                 expand=True,
+                                 scroll=ft.ScrollMode.AUTO,
+                                 alignment="center",
+                                 width=400)
         subtitle = ft.Text(value="Categorias Existentes",
-                                 color="#3549f8",
+                                 color="#505ab4",
                                  size=25)
 
         linha_categoria = ft.Row(controls=[self.pegar_categoria,botão_salvar],
@@ -45,7 +50,6 @@ class CategoriaView(ft.View):
                                   height=100,
                                   padding=5)
 
-        self.atualizar_lista()
 
         self.route = "/categoriaview"
         self.controls = [title,countainer,subtitle, coluna_lista]
@@ -56,6 +60,7 @@ class CategoriaView(ft.View):
             
             categoria = self.pegar_categoria.value
 
+
             resultado = Categoria().adicionar(categoria, self.dados_usuario)
 
             if resultado:
@@ -65,6 +70,7 @@ class CategoriaView(ft.View):
                 self.page.show_dialog(ft.SnackBar(content="Você come merda?",
                                                   bgcolor="#35abfa"))
 
+            self.lista_categoria.clear()
             self.atualizar_lista()
 
     def atualizar_lista(self):
@@ -72,12 +78,25 @@ class CategoriaView(ft.View):
 
         for x in categorias:
              campo = x.get("tipo")
-             texto = ft.TextField(value=campo,
+             linha = ft.Row(controls=[ft.TextField(value=campo,
                                   height=50,
-                                  width=200)
-             self.lista_categoria.append(texto)
+                                  width=275), 
+                                  ft.Button(icon=ft.Icon(ft.CupertinoIcons.DELETE), on_click=self.excluir_lista, width=100)])
+             
+             
+             self.lista_categoria.append(linha)
              
              self.page.update()
+
+    def excluir_lista(self):
+
+        Categoria().excluir(self.dados_usuario)
+
+        self.atualizar_lista()
+
+
+
+        
                 
 
         
