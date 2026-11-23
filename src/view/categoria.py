@@ -74,6 +74,7 @@ class CategoriaView(ft.View):
             self.atualizar_lista()
 
     def atualizar_lista(self):
+        self.lista_categoria.clear()
         categorias = Categoria().recuperar(self.dados_usuario)
 
         for x in categorias:
@@ -81,20 +82,19 @@ class CategoriaView(ft.View):
              linha = ft.Row(controls=[ft.TextField(value=campo,
                                   height=50,
                                   width=275), 
-                                  ft.Button(icon=ft.Icon(ft.CupertinoIcons.DELETE), on_click=self.excluir_lista, width=100)])
+                                  ft.Button(icon=ft.Icon(ft.CupertinoIcons.DELETE),key=x.get("id_categoria"), on_click=self.excluir_lista, width=100)])
              
              
              self.lista_categoria.append(linha)
              
              self.page.update()
 
-    def excluir_lista(self):
+    def excluir_lista(self,botao_excluir):
 
-        Categoria().excluir(self.dados_usuario)
+        id_categoria = botao_excluir.control.key
+        Categoria().excluir(id_categoria)
 
         self.atualizar_lista()
-
-
 
         
                 
