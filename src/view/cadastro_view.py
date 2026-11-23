@@ -39,15 +39,12 @@ class Cadastro(ft.View):
         cadastrar = ft.Button(content="Cadastrar",
                               width=300,
                               height=50,
-                              color= "#505ab4",
-                              margin=5,
                               on_click=self.cadastrar
         )
-        entrar = ft.Button(content="Entrar",
+        entrar = ft.TextButton(content="Já tem uma conta? Clique para entrar",
                               width=300,
                               height=50,
-                              color= "#505ab4",
-                              margin=5,
+                              style=ft.ButtonStyle(color="#505ab4"),
                               on_click=self.ir
         )
         coluna_acesso = ft.Column(controls=[self.login,self.senha])

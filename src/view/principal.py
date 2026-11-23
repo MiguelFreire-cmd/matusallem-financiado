@@ -10,13 +10,19 @@ class Principal(ft.View):
         self.height = 600
         self.title = "Formulário"
         self.bgcolor = "#ffffff"
-        self.horizontal_alignment = "center"
         self.vertical_alignment = "center"
+        self.horizontal_alignment = "center"
 
-        title = ft.Text(value="ENTROUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU",
+        dados_usuario = pg.session.store.get("usuario_logado")
+
+        title = ft.Text(value="Matusalem Financiado",
                         color="#505ab4",
-                        size=100)
+                        size=30,)
+        subtitle = ft.Text(value=f"{dados_usuario} Manda tudo para eu roubar suas informações",
+                        color="#505ab4",
+                        size=12,)
+
 
         self.route = "/principal"
 
-        self.controls = [title]
+        self.controls = [title,subtitle]
