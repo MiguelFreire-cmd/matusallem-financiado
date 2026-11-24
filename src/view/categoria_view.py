@@ -18,16 +18,6 @@ class Despesas_por_categoria(ft.View):
         title = ft.Text(value="Visualizar Despesas por categoria",
                         color="#7392f7",
                         size=30,)
-        self.lista_despesas = []
-
-        tabela_despesas = ft.DataTable(columns=[ft.DataColumn(label="ID DA DESPESA"),
-                                                ft.DataColumn(label="CATEGORIA"),
-                                                ft.DataColumn(label="DATA"),
-                                                ft.DataColumn(label="HORA"),
-                                                ft.DataColumn(label="DESCRIÇÃO"),
-                                                ft.DataColumn(label="VALOR"),
-                                                ft.DataColumn(label="EXCLUIR DESPESA")],
-                                                rows=self.lista_despesas, heading_row_color="#7392f7",)
         opcoes_categoria = []
         categorias = Categoria.recuperar(self.dados_usuario)
         
@@ -40,31 +30,38 @@ class Despesas_por_categoria(ft.View):
                                               color="#505ab4",
                                               border_color="#505ab4",
                                               options=opcoes_categoria,
+                                              on_select=self.recuperar_despesas
                                               )
-        botao_despesas = ft.Button(icon=ft.Icon(ft.Icons.ADD_BOX_OUTLINED),
-                                   bgcolor="#7392f7",
-                                   color="#ffffff",
-                                   on_click=self.recuperar_despesas
-                                   )
+        
+        self.lista_despesas = []
+
+        tabela_despesas = ft.DataTable(columns=[ft.DataColumn(label="ID DA DESPESA"),
+                                                ft.DataColumn(label="DATA"),
+                                                ft.DataColumn(label="HORA"),
+                                                ft.DataColumn(label="DESCRIÇÃO"),
+                                                ft.DataColumn(label="VALOR"),
+                                                ft.DataColumn(label="EXCLUIR DESPESA")],
+                                                rows=self.lista_despesas, heading_row_color="#7392f7",)
+       
+
+        self.recuperar_despesas
         
         self.route = "/despesasview"
-        self.controls = [title,botao_despesas,tabela_despesas,self.campo_categoria]
+        self.controls = [title,tabela_despesas,self.campo_categoria]
 
     def recuperar_despesas(self):
         self.lista_despesas.clear()
-        categorias = Despesa().pegar(self.dados_usuario)
+        categorias = Despesa().pegar_categoria(self.dados_usuario, self.campo_categoria.value)
 
 
         for x in categorias:
             id_despesas = x.get("id_despesa")
-            id_categoria = x.get("tipo")
             data = x.get("data")
             hora = x.get("hora")
             descricao = x.get("descricao")
             valor = x.get("valor")
 
             dados_linha = ft.DataRow(cells=[ft.DataCell(content=f"{id_despesas}"),
-                                            ft.DataCell(content=f"{id_categoria}"),
                                             ft.DataCell(content=f"{data}"),
                                             ft.DataCell(content=f"{hora}"),
                                             ft.DataCell(content=f"{descricao}"),

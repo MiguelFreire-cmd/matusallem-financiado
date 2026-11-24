@@ -85,8 +85,8 @@ class Despesa:
 
         try:
             cursor.execute("""
-                            SELECT id_despesa, id_categoria, id_login FROM tb_despesas
-                            WHERE id_login = %s;
+                            SELECT * FROM tb_despesas
+                            WHERE id_login = %s
                             and id_categoria = %s;
                             """,
                             [id_login,id_categoria])
