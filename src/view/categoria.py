@@ -27,7 +27,8 @@ class CategoriaView(ft.View):
 
         botão_salvar = ft.Button(content="salvar",
                                  color="#505ab4",
-                                 on_click= self.cadastrar_categoria)
+                                 on_click= self.cadastrar_categoria,
+                                 )
         
         
 

@@ -30,17 +30,18 @@ class DespesaView(ft.View):
                                  color="#505ab4",
                                  border_color="#505ab4",
                                  bgcolor="#ffffff")
-        self.campo_data = ft.TextField(label="Data ",
-                                 width=300,
-                                 color="#505ab4",
-                                 border_color="#505ab4",
-                                 bgcolor="#ffffff")
+        
+        self.data = ft.DatePicker()
+
+        self.campo_data = ft.Button(icon=ft.Icons.CALENDAR_MONTH,on_click=lambda _: self.page.show_dialog(self.data),bgcolor="#c0dff1",color= "#ffffff",width = 300, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)) )
         
         self.campo_hora = ft.TextField(label="Hora ",
                                  width=300,
                                  color="#505ab4",
                                  border_color="#505ab4",
-                                 bgcolor="#ffffff")
+                                 bgcolor="#ffffff",
+                                 
+                                 )
 
         opcoes_categoria = []
         categorias = Categoria.recuperar(self.dados_usuario)
@@ -60,7 +61,7 @@ class DespesaView(ft.View):
                                          width=300,
                                          on_click=self.cadastrar_despesas,
                                          bgcolor="#c0dff1",
-                                         color= "#ffffff",)
+                                         color= "#ffffff",style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=5)))
 
         
         coluna_campos = ft.Column(controls=[self.descricao,self.valor,self.campo_data,self.campo_hora,self.campo_categoria,self.botao_cadastrar])
@@ -71,11 +72,10 @@ class DespesaView(ft.View):
     def cadastrar_despesas(self):
         descricao = self.descricao.value
         valor = self.valor.value
-        data = self.campo_data.value
+        data = self.data.value
         id_categoria = self.campo_categoria.value
         hora = self.campo_hora.value
 
-        data_formatada = datetime.strptime(data, "%d/%m/%Y").date()
-        hora_formatada = datetime.strptime(hora, "%H:%M:%S")
+        hora_formatada = datetime.strptime(hora, "%H:%M")
 
-        Despesa().adicionar(self.dados_usuario, id_categoria, data_formatada, hora_formatada, descricao, valor)
+        Despesa().adicionar(self.dados_usuario, id_categoria, data, hora_formatada, descricao, valor)

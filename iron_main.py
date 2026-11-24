@@ -72,6 +72,7 @@ def main(pg:ft.Page):
             tela_visualizar_despesas.navigation_bar = tela_navegacao
             pg.views.append(tela_visualizar_despesas)
 
+
         pg.update()
 
     pg.on_route_change = roteament

@@ -56,8 +56,16 @@ class Despesa:
 
         try:
             cursor.execute("""
-                            SELECT * FROM tb_despesas
-                            WHERE id_login = %s;
+                            SELECT id_despesa,
+                            tb_despesas.id_login,valor,
+                            data,
+                            hora,
+                            descricao,
+                            tb_despesas.id_categoria,
+                            tb_categorias.tipo
+                            FROM tb_despesas
+                            inner join tb_categorias on tb_categorias.id_categoria = tb_despesas.id_categoria
+                            where tb_despesas.id_login = %s;
                             """,
                             [id_login])
             pegador = cursor.fetchall()
