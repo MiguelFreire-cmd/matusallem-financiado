@@ -15,7 +15,7 @@ class Despesas_por_categoria(ft.View):
         self.bgcolor = "#e0eeff"
         self.horizontal_alignment = "center"
         self.dados_usuario = pg.session.store.get("usuario_logado")
-        title = ft.Text(value="Visualizar Despesas por categoria",
+        title = ft.Text(value="Despesas por categoria",
                         color="#7392f7",
                         size=30,)
         opcoes_categoria = []
