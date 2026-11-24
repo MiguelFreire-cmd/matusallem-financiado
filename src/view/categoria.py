@@ -27,7 +27,8 @@ class CategoriaView(ft.View):
 
         botão_salvar = ft.Button(content="salvar",
                                  color="#505ab4",
-                                 on_click= self.cadastrar_categoria)
+                                 on_click= self.cadastrar_categoria,
+                                 )
         
         
 
@@ -63,7 +64,7 @@ class CategoriaView(ft.View):
 
             resultado = Categoria().adicionar(categoria, self.dados_usuario)
 
-            if resultado:
+            if resultado :
                 self.page.show_dialog(ft.SnackBar(content="Belo cadastro irmão",
                                                   bgcolor="#94d1fa"))
             else:
