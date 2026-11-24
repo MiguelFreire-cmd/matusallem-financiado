@@ -2,7 +2,7 @@ import flet as ft
 from src.view.cadastro_view import Cadastro
 from src.view.principal import Principal
 from src.view.login import Login
-from src.view.categoria_view import Categoria_visualização
+from src.view.categoria_view import Despesas_por_categoria
 from src.view.categoria import CategoriaView
 from src.view.despesa import DespesaView
 from src.view.despesas_view import Despesas_visualização
@@ -60,7 +60,7 @@ def main(pg:ft.Page):
             tela_categoria.navigation_bar = tela_navegacao
             pg.views.append(tela_categoria)
         elif pg.route == "/categoria":
-            tela_despesas_por_categoria = Categoria_visualização(pg)
+            tela_despesas_por_categoria = Despesas_por_categoria(pg)
             tela_despesas_por_categoria.navigation_bar = tela_navegacao
             pg.views.append(tela_despesas_por_categoria)
         elif pg.route == "/despesas":
